@@ -109,6 +109,7 @@ class NoteBookApp {
 
     document.getElementById('cornellTitle').addEventListener('input', () => {
       this.saveCurrentPageData();
+      this.updateTOC();
     });
 
     document.getElementById('cornellDate').addEventListener('input', () => {
@@ -284,7 +285,8 @@ class NoteBookApp {
       
       const title = document.createElement('div');
       title.className = 'toc-item-title';
-      title.textContent = page.title || ('第 ' + (index + 1) + ' 页');
+      const displayTitle = page.cornell?.title || page.title || ('第 ' + (index + 1) + ' 页');
+      title.textContent = displayTitle;
       
       const deleteBtn = document.createElement('button');
       deleteBtn.className = 'toc-item-delete';
