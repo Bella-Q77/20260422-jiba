@@ -285,7 +285,21 @@ class NoteBookApp {
       
       const title = document.createElement('div');
       title.className = 'toc-item-title';
-      const displayTitle = page.cornell?.title || page.title || ('第 ' + (index + 1) + ' 页');
+      
+      const pageNum = index + 1;
+      const cornellTitle = page.cornell?.title?.trim();
+      const leftTitle = page.title?.trim();
+      const defaultPageTitle = '第 ' + pageNum + ' 页';
+      
+      let displayTitle;
+      if (cornellTitle && cornellTitle !== defaultPageTitle) {
+        displayTitle = '第 ' + pageNum + ' 页：' + cornellTitle;
+      } else if (leftTitle && leftTitle !== defaultPageTitle) {
+        displayTitle = '第 ' + pageNum + ' 页：' + leftTitle;
+      } else {
+        displayTitle = defaultPageTitle;
+      }
+      
       title.textContent = displayTitle;
       
       const deleteBtn = document.createElement('button');
